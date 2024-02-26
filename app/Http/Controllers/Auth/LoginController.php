@@ -17,19 +17,19 @@ class LoginController extends Controller
 
         if(!Auth::validate($credentials)):
             return redirect()->to('login')
-                ->withErrors(trans('auth.failed'));
+                ->with(['message' => 'بيانات غير صحيحة الرجاء التاكد من البيانات', 'alert-type' => 'error']);
         endif;
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
 
-        return redirect()->intended();
+        return redirect()->intended()->with(['message' => '^-^ تم تسجيل الدخول بنجاح مرحبا بك    ', 'alert-type' => 'success']);
     }
 
     public function logout(){
         Session::flush();
         Auth::logout();
-        return redirect('login');
+        return redirect('login')->with(['message' => 'تم تسجيل الخروج بنجاح', 'alert-type' => 'info']);
     }
 }

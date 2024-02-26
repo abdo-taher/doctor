@@ -15,8 +15,6 @@ class ContactFormController extends Controller
             'textarea'=>['required', 'string'],
         ]);
         ContanctForm::create($vaild);
-        return redirect()->back()->with('success', 'تم ارسال الرسالة بنجاح');
-
+        return redirect()->back()->with(['message' => 'تم ارسال الرسالة بنجاح', 'alert-type' => 'success']);
     }
-
 }

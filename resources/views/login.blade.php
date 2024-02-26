@@ -15,6 +15,9 @@
     <link rel="shortcut icon" href="{{asset('assets/img/logo.png')}}" type="image/x-icon">
     <!-- Font Awesome -->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!--  toastr  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,15 +84,15 @@
                     <h1> Login</h1>
                     <p>Patient Information</p>
                 </div>
-                @if(isset ($errors) && count($errors) > 0)
-                    <div class="alert alert-warning" role="alert">
-                        <ul class="list-unstyled mb-0">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+{{--                @if(isset ($errors) && count($errors) > 0)--}}
+{{--                    <div class="alert alert-warning" role="alert">--}}
+{{--                        <ul class="list-unstyled mb-0">--}}
+{{--                            @foreach($errors->all() as $error)--}}
+{{--                                <li>{{ $error }}</li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                @endif--}}
                 <div class="form-container" id="login">
                     <form class="row g-3" action="{{route('login-check')}}" method="post">
                         @csrf
@@ -122,6 +125,49 @@
         </div>
     </div>
 
+    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eMNqVbJ6uK2VaUluOu9bgAc4TWdKA6U7zu8K6cjeYrN/x4YOGp4G1C2MeX85DeeD" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+        @if (\Illuminate\Support\Facades\Session::has('message'))
+        var type = "{{ \Illuminate\Support\Facades\Session::get('alert-type', 'info') }}"
+        switch (type) {
+            case 'info':
+
+                toastr.options.timeOut = 100000;
+                toastr.info("{{ \Illuminate\Support\Facades\Session::get('message') }}");
+                var audio = new Audio('audio.mp3');
+                audio.play();
+                break;
+            case 'success':
+
+                toastr.options.timeOut = 100000;
+                toastr.success("{{ \Illuminate\Support\Facades\Session::get('message') }}");
+                var audio = new Audio('audio.mp3');
+                audio.play();
+
+                break;
+            case 'warning':
+
+                toastr.options.timeOut = 100000;
+                toastr.warning("{{ \Illuminate\Support\Facades\Session::get('message') }}");
+                var audio = new Audio('audio.mp3');
+                audio.play();
+
+                break;
+            case 'error':
+
+                toastr.options.timeOut = 100000;
+                toastr.error("{{ \Illuminate\Support\Facades\Session::get('message') }}");
+                var audio = new Audio('audio.mp3');
+                audio.play();
+
+                break;
+        }
+        @endif
+    </script>
 
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('assets/js/popper.min.js')}}"></script>
