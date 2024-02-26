@@ -24,5 +24,5 @@ Route::middleware('guest')->group(function () {
     Route::post('/', [\App\Http\Controllers\ContactFormController::class, 'store'])->name('contact-form');
 
 Route::middleware('auth:web')->group(function () {
-    Route::post('logOut', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('logOut', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });

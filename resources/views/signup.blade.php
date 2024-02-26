@@ -40,7 +40,7 @@
             <div class="collapse navbar-collapse active" id="navbarSupportedContent" >
                 <ul class="navbar-nav ml-auto " >
                     <li class="nav-item">
-                        <a href="signUpPatient.html">
+                        <a href="{{route('login')}}">
                             <button class="login-btn">
                                 <p>دخول &nbsp; <i class="fa-solid fa-right-to-bracket"></i></p>
                             </button>
@@ -123,7 +123,7 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="birthday">Birth Date :</label>
-                                <input type="date" id="birthDate" class="form-control"  name="birthday"  value=" yyyy-MM-dd">
+                                <input type="date" id="birthDate" class="form-control"  name="birthday"  value="{{old('birthday') ? old('birthday') : 'yyyy-MM-dd'}}">
                             </div>
                             @error('birthday')
                             <blockquote class="quote-danger">
@@ -133,9 +133,9 @@
                             <div class="col-md-6 check-box mt-4">
                                 <p>Gender :</p>
                                 <div class="check">
-                                        <input type="radio" id="html" name="gender" value="{{old('gender') == 1 ? 1 : ''}}">
+                                        <input type="radio" id="html" name="gender" {{old('gender') == 0 ? 'checked' : ''}} value="1">
                                         <label for="html">Male</label>
-                                        <input type="radio" id="css" name="gender" value="{{old('gender') == 0 ? 0 : ''}}">
+                                        <input type="radio" id="css" name="gender" {{old('gender') == 1 ? 'checked' : ''}} value="0">
                                         <label for="css">Female</label><br>
                                 </div>
                             </div>

@@ -47,13 +47,24 @@
             </button>
                 <div class="collapse navbar-collapse active" id="navbarSupportedContent" >
                     <ul class="navbar-nav ml-auto " >
-                        <li class="nav-item">
-                            <a  href="{{route('login')}}">
-                                <button class="login-btn">
-                                    <p>دخول &nbsp; <i class="fa-solid fa-right-to-bracket"></i></p>
-                                </button>
-                            </a>
-                        </li>
+                        @auth('web')
+                            <li class="nav-item">
+                                <a href="{{route('logout')}}">
+                                    <button class="login-btn">
+                                        <p>تسجيل خروج &nbsp; <i class="fa-solid fa-left-to-bracket"></i></p>
+                                    </button>
+                                </a>
+                            </li>
+                        @endauth
+                        @guest()
+                            <li class="nav-item">
+                                <a href="{{route('login')}}">
+                                    <button class="login-btn">
+                                        <p>دخول &nbsp; <i class="fa-solid fa-right-to-bracket"></i></p>
+                                    </button>
+                                </a>
+                            </li>
+                        @endguest
                         <li class="nav-item">
                             <a class="nav-link" href="">تسجيل دكتور</a>
                         </li>

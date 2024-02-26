@@ -39,24 +39,13 @@
         </button>
             <div class="collapse navbar-collapse active" id="navbarSupportedContent" >
                 <ul class="navbar-nav ml-auto " >
-                    @auth('web')
-                        <li class="nav-item">
-                            <a href="{{route('logOut')}}">
-                                <button class="login-btn">
-                                    <p>تسجيل خروج &nbsp; <i class="fa-solid fa-left-to-bracket"></i></p>
-                                </button>
-                            </a>
-                        </li>
-                    @endauth
-                    @guest()
-                            <li class="nav-item">
-                                <a href="{{route('login')}}">
-                                    <button class="login-btn">
-                                        <p>دخول &nbsp; <i class="fa-solid fa-right-to-bracket"></i></p>
-                                    </button>
-                                </a>
-                            </li>
-                    @endguest
+                    <li class="nav-item">
+                        <a href="#login">
+                            <button class="login-btn">
+                                <p>دخول &nbsp; <i class="fa-solid fa-right-to-bracket"></i></p>
+                            </button>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">تسجيل دكتور</a>
                     </li>
@@ -92,12 +81,21 @@
                     <h1> Login</h1>
                     <p>Patient Information</p>
                 </div>
-                <div class="form-container">
+                @if(isset ($errors) && count($errors) > 0)
+                    <div class="alert alert-warning" role="alert">
+                        <ul class="list-unstyled mb-0">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <div class="form-container" id="login">
                     <form class="row g-3" action="{{route('login-check')}}" method="post">
                         @csrf
                         <div class="col-md-12">
                                 <label for="inputEmail4" class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" id="inputEmail4">
+                                <input type="email" name="email" value="{{old('email')}}" class="form-control" id="inputEmail4">
                         </div>
                         @error('email')
                         <blockquote class="quote-danger">

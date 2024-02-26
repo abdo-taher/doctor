@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+        Schema::create('contactForms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('text');
             $table->string('email', )->unique();
             $table->text('textarea')->nullable();
             $table->timestamps();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('contactForms');
     }
 };

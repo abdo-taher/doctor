@@ -16,6 +16,7 @@ class ContanctForm extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'contactForms';
     protected $fillable = [
         'text',
         'email',

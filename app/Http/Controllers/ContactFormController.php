@@ -9,7 +9,7 @@ class ContactFormController extends Controller
 {
 
     public function store(Request $request){
-        $vaild = $this->validate([
+        $vaild = $request->validate([
             'text'=>['required', 'string','max:255'],
             'email'=>['required', 'email'],
             'textarea'=>['required', 'string'],
