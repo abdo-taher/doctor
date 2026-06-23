@@ -57,3 +57,10 @@ doctor/
 ├── composer.json
 ├── package.json
 └── vite.config.js
+
+```
+
+## 📬 Contact
+For any questions or concerns, please contact us at [abdotaher093@gmail.com](mailto:abdotaher093@gmail.com).
+
+## Developed by [عبدالرحمن طاهر](https://abdotaher.me/) — Laravel & Database Developer.
